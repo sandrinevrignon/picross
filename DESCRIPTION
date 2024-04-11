@@ -1,0 +1,18 @@
+Package: picross
+Title: Picross game
+Version: 0.0.0.9000
+Authors@R: 
+    person("Sandrine", "VRIGNON", , "sandrine.schoettel@etu.umontpellier.fr", role = c("aut", "cre"),
+           comment = "student")
+Description: Ici vous pouvez jouer au célèbre jeu nommé picross. Ce jeu vous apportera des moments de réflexion et de la relaxation à travers ces nombreuses grilles aussi bien faciles que plus compliqué.Ce package permet de lancer une interface shiny qui vous permettra de lancer le jeu.
+License: `use_ccby_license()`
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Depends:R (= 4.3.1)
+Imports: 
+    shinyjs,
+    bslib,
+    shinyalert,
+    stringi,
+    shiny
