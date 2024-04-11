@@ -4,14 +4,18 @@ library(bslib)
 library(shinyalert)
 library(stringi)
 
-
+#' Picross game
+#' @name Picross
+#'
+#' @param request
+#'
+#' @return grille de picross avec solution
+#' @export
+#'
+#' @examples grille de picross 5x5 en forme de S
 function(request){navbarPage(
 
-  #tags$b(textOutput("titre_dialogue")),
-  #           textOutput("dialogue"),
-  #htmlOutput("dialogue"),
-
-  tags$link(
+    tags$link(
     rel = "stylesheet",
     href="https://fonts.googleapis.com/css?family=Tangerine"
   ),
@@ -35,8 +39,8 @@ border-color: #560000;
     }
 
   .btn {
-    height: 60px;
-    width: 60px;
+    height: 20px;
+    width: 20px;
     border: 10px;
     margin-top: 2px;
     margin-bottom: 2px;
@@ -74,13 +78,10 @@ border-color: #560000;
                ### Sélection taille et difficulté ----
                shinydashboard::box(id = "selection_box", width=12,
 
-                                   tags$b("Choisissez un niveau de difficulté"),br(),
-                                   uiOutput("select_difficulte"),
-
                                    tags$b("Choisissez une taille de grille"),br(),
                                    uiOutput("select_taille"),
                ),
-               actionButton('submit', label = "Sélectionner", style= "width: 35%; height: 100%"),
+               actionButton('submit', label = "Sélectionner puis cliquer sur Jouer (en haut)", style= "width: 35%; height: 100%"),
              )
       ),
 

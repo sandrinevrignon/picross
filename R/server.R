@@ -4,6 +4,7 @@ server <- function(input, output, session) {
 
   # Initialisation ----
 
+
   ## Création des réactifs ----
 
   myReactives <- reactiveValues()
@@ -42,7 +43,7 @@ server <- function(input, output, session) {
       Sponsorisé par Mario.
 
       <br><br>
-      Sandrine & Linus.
+      Sandrine & XXXX.
              </p>
              ", type = "success", size="m", html=T, confirmButtonText="C'est parti !", confirmButtonCol='#B74d53') #B74d53 #f3969a #074c87
 
@@ -63,25 +64,19 @@ server <- function(input, output, session) {
 
   ## Texte choisir paramètres ----
 
-  output$texte_choisir <-renderUI(HTML("<b>Choisissez une taille de grille et un niveau de difficulté dans \"Sélection des options\".</b>"))
+  output$texte_choisir <-renderUI(HTML("<b>Choisissez une taille de grille dans \"Sélection des options\".</b>"))
 
   ## Initiatilisation texte verif ----
   output$texte_verif <-renderUI(HTML(" "))
 
-  ## Select difficulté ----
-  output$select_difficulte <- renderUI({ # Choisissez un niveau de difficulté
-    radioButtons('select_difficulte', '', choiceNames=c("Facile", "Difficile"), choiceValues=c("facile", "difficile"), selected = character(0))
-  })
-
   ## Select taille ----
   output$select_taille <- renderUI({ # Choisissez une taille de grille
-    radioButtons('select_taille', '', choiceNames=c("5x5", "10x10"), choiceValues=c("5x5", "10x10"), selected = character(0))
+    radioButtons('select_taille', '', choiceNames=c("5x5", "10x10", "15x15", "20x20"), choiceValues=c("5x5", "10x10", "15x15", "20x20"), selected = character(0))
   })
 
   # Choix de la grille en fonction des options ----
   observeEvent(input$submit , {
-    name_grille=paste(input$select_taille, input$select_difficulte, sample(c(1:2), 1), sep="_")
-
+    name_grille=paste(input$select_taille, sample(c(1:2), 1), sep="_")
 
     grille(as.data.frame(readxl::read_xlsx(paste0(dirname(getwd()),"/data/grilles.xlsx"), sheet = name_grille, col_names = FALSE, .name_repair = "unique_quiet")))
 
@@ -197,7 +192,7 @@ server <- function(input, output, session) {
   ## Activation submit --------------------
 
   observe({
-    if (is.null(input$select_difficulte) | is.null(input$select_taille)){
+    if (is.null(input$select_taille)){
       shinyjs::disable("submit")
     } else{
       shinyjs::enable("submit")
