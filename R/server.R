@@ -83,7 +83,7 @@ server <- function(input, output, session) {
     name_grille=paste(input$select_taille, input$select_difficulte, sample(c(1:2), 1), sep="_")
 
 
-    grille(as.data.frame(readxl::read_xlsx("grilles.xlsx", sheet = name_grille, col_names = FALSE, .name_repair = "unique_quiet")))
+    grille(as.data.frame(readxl::read_xlsx(paste0(dirname(getwd()),"/data/grilles.xlsx"), sheet = name_grille, col_names = FALSE, .name_repair = "unique_quiet")))
 
     ind_vert <- as.list(apply(grille(), MARGIN=2, function(x){attributes(gregexpr("1+", paste(x,collapse=""))[[1]])[["match.length"]]}))
     ind_hor <- as.list(apply(grille(), MARGIN=1, function(x){attributes(gregexpr("1+", paste(x,collapse=""))[[1]])[["match.length"]]}))
